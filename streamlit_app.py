@@ -25,8 +25,13 @@ if ingredients_list:
         ingredients_string += fruit_chosen + ' '
         st.subheader(fruit_chosen + ' Nutrition Information')
         smoothiefroot_response = requests.get("https://my.smoothiefroot.com/api/fruit/" + fruit_chosen)
-        st_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
-        st.stop()
+        # st_df = st.dataframe(data=smoothiefroot_response.json(), use_container_width=True)
+        # st.stop()
+
+    # Convert snowpark dataframe to pandas dataframe so we can use LOC function
+    pd_df=my_dataframe.to_pandas()
+    st.dataframe(pd_df)
+    st.stop()
     
     st.write (ingredients_string)
     
